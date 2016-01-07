@@ -1,6 +1,7 @@
 package com.jctecnologia.turismoapp;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
         import com.facebook.FacebookCallback;
@@ -27,6 +29,11 @@ import com.facebook.CallbackManager;
         import com.google.android.gms.common.api.GoogleApiClient;
         import com.google.android.gms.drive.Drive;
         import com.google.android.gms.plus.Plus;
+import com.jctecnologia.turismoapp.model.Pessoa;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 
 public class LoginCadastroActivity  extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
@@ -45,6 +52,9 @@ public class LoginCadastroActivity  extends AppCompatActivity implements GoogleA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        RealmConfiguration config = new RealmConfiguration.Builder(this).build();
+        Realm.setDefaultConfiguration(config);
 
         //INTEGRAÇÃO COM FACEBOOK
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -132,6 +142,21 @@ public class LoginCadastroActivity  extends AppCompatActivity implements GoogleA
         //FACEBOOK
         // Logs 'install' and 'app activate' App Events.
         AppEventsLogger.activateApp(this);
+
+        //ACESSO A BANCO DE DADOS USANDO O REALM
+
+        Realm realm = Realm.getInstance(this);
+        RealmResults<Pessoa> realmPessoaResult = realm.where(Pessoa.class).findAll();
+
+        if(realmPessoaResult.size()==0){
+            btnCadastrarPessoa.setText("Cadastrar Usuario");
+        }else {
+            btnCadastrarPessoa.setText("Login");
+        }
+
+        Toast.makeText(LoginCadastroActivity.this,"Numero de Usuarios Cadastrados" + realmPessoaResult.size(), Toast.LENGTH_LONG).show();
+
+        realm.close();
     }
 
     @Override

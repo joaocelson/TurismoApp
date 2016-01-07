@@ -17,8 +17,11 @@ android {
         config {
             keyAlias 'IbitiKey'
             keyPassword 'limaduarte'
-            "storeFile file('D:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')"
-            storeFile file('D:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')
+         //   "storeFile file('D:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')"
+         //   storeFile file('D:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')
+            "storeFile file('C:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')"
+            storeFile file('C:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')
+
             storePassword 'limaduarte'
         }
     }
@@ -50,10 +53,13 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.google.android.gms:play-services:8.4.0'
+    compile 'com.google.android.gms:play-services-auth:8.4.0'
+    compile 'com.google.android.gms:play-services-drive:8.4.0'
+    compile 'com.google.android.gms:play-services-plus:8.4.0'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.facebook.android:facebook-android-sdk:4.8.2'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
     compile 'com.google.code.gson:gson:2.3.1'
+    compile 'io.realm:realm-android:0.87.1'
 }
