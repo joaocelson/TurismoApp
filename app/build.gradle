@@ -17,10 +17,10 @@ android {
         config {
             keyAlias 'IbitiKey'
             keyPassword 'limaduarte'
-         //   "storeFile file('D:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')"
-         //   storeFile file('D:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')
-            "storeFile file('C:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')"
-            storeFile file('C:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')
+            "storeFile file('D:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')"
+          storeFile file('D:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')
+            //   "storeFile file('C:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')"
+            //     storeFile file('C:/ProjetosGit/TurismoApp/app/Keys/pluslogin.jks')
 
             storePassword 'limaduarte'
         }

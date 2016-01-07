@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -154,7 +155,7 @@ public class LoginCadastroActivity  extends AppCompatActivity implements GoogleA
             btnCadastrarPessoa.setText("Login");
         }
 
-        Toast.makeText(LoginCadastroActivity.this,"Numero de Usuarios Cadastrados" + realmPessoaResult.size(), Toast.LENGTH_LONG).show();
+        Toast.makeText(LoginCadastroActivity.this,"Numero de Usuarios Cadastrados: " + realmPessoaResult.size(), Toast.LENGTH_LONG).show();
 
         realm.close();
     }
@@ -239,9 +240,45 @@ public class LoginCadastroActivity  extends AppCompatActivity implements GoogleA
                 break;
             case R.id.email_sign_in_button:
                 //ENVIA PARA A ACTIVITY DE CADASTRO
-                Intent intent = new Intent();
-                intent.setClass(LoginCadastroActivity.this, CadastroPessoaActivity.class);
-                startActivity(intent);
+                Button btnLoginCadastro = (Button)findViewById(R.id.email_sign_in_button);
+                if(btnLoginCadastro.getText().equals("Login")){
+
+                    //Tenta fazer a autenticação do usuario, caso for OK, passa para a próxima tela
+
+                    EditText txtEmail = (EditText)findViewById(R.id.txtEmailLogin);
+                    String email = txtEmail.getText().toString();
+
+                    EditText txtPassword = (EditText)findViewById(R.id.txtPasswordLogin);
+                    String password = txtPassword.getText().toString();
+
+                    Realm realm = Realm.getDefaultInstance();
+                    RealmResults<Pessoa> realmResultsPessoa = realm.where(Pessoa.class).findAll();
+                    realmResultsPessoa = realmResultsPessoa.where().equalTo("email",email).equalTo("password",password).findAll();
+                    Pessoa pessoaLogada = null;
+
+                    if(realmResultsPessoa.size() > 0) {
+                        pessoaLogada = realmResultsPessoa.where().findAll().get(0);
+                    }
+
+                    if(pessoaLogada!=null){
+                        Intent intent = new Intent();
+                        intent.setClass(LoginCadastroActivity.this, MainActivity.class);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("nome", pessoaLogada.getNome());
+                        bundle.putString("email", pessoaLogada.getEmail());
+
+                        intent.putExtras(bundle);
+
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(this, "Usuário ou senha inválido.", Toast.LENGTH_LONG).show();
+                    }
+                }else {
+                    Intent intent = new Intent();
+                    intent.setClass(LoginCadastroActivity.this, CadastroPessoaActivity.class);
+                    startActivity(intent);
+                }
                 break;
             // ...
         }

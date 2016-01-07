@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,6 +43,25 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Intent intent = getIntent();
+        String nome = "",email ="";
+
+        if(intent!=null)
+        {
+            nome = intent.getStringExtra("nome");
+            email = intent.getStringExtra("email");
+        }
+
+        NavigationView nav_view= (NavigationView)findViewById(R.id.nav_view);
+        View header = nav_view.getHeaderView(0);
+
+        TextView txtNomeNav = (TextView)header.findViewById(R.id.lblNomeNavegacao);
+        txtNomeNav.setText(nome.toString());
+
+        TextView txtEmailNav = (TextView)header.findViewById(R.id.lblEmailNavegacao);
+        txtEmailNav.setText(email.toString());
+
     }
 
     @Override
