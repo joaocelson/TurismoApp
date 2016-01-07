@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class CadastroPessoaActivity extends AppCompatActivity {
 
     Button btnSalvar;
     EditText txtNome, txtPassword, txtEmail;
+    int TipoPessoa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,15 +38,37 @@ public class CadastroPessoaActivity extends AppCompatActivity {
         txtPassword = (EditText)findViewById(R.id.txtPassword);
         txtEmail = (EditText)findViewById(R.id.txtEmail);
 
-
-
         btnSalvar = (Button) findViewById(R.id.btnCadastrar);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                salvarPessoa();
+               salvarPessoa();
+                Toast.makeText(CadastroPessoaActivity.this, "Cadastro realizado com sucesso.", Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(CadastroPessoaActivity.this, "Cadastro não realizado, tento novamente.", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
+
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.rbTurista:
+                if (checked)
+                    Toast.makeText(CadastroPessoaActivity.this, "Turista", Toast.LENGTH_SHORT).show();
+                TipoPessoa =1;
+                break;
+            case R.id.rbComerciante:
+                if (checked)
+                    Toast.makeText(CadastroPessoaActivity.this, "Comerciante", Toast.LENGTH_SHORT).show();
+                TipoPessoa = 2;
+                break;
+        }
     }
 
     private void salvarPessoa(){
@@ -55,7 +79,7 @@ public class CadastroPessoaActivity extends AppCompatActivity {
 
         class TheTask extends AsyncTask<String,Void,String>
         {
-
+            String resultado = "false";
             @Override
             protected String doInBackground(String... arg0) {
                 String text =null;
@@ -67,15 +91,17 @@ public class CadastroPessoaActivity extends AppCompatActivity {
                         urlConnection.setChunkedStreamingMode(0);
                         urlConnection.setRequestMethod("POST");
                         urlConnection.setDoOutput(true);
-                        String urlParamenter = "nome=" +nome  + "&email="+email+"&password="+password;
+                        String urlParamenter = "nome=" +nome  + "&email="+email+"&password="+password+"&tipoPessoa="+TipoPessoa;
 
                         OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
                         out.write(urlParamenter.getBytes());
                         out.flush();
                         out.close();
                         int responseCode = urlConnection.getResponseCode();
-
-
+                        if (responseCode==200)
+                        {
+                            resultado = "true";
+                        }
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -87,17 +113,15 @@ public class CadastroPessoaActivity extends AppCompatActivity {
                 {
                     e.printStackTrace();
                 }
-
-                return text;
+                return resultado;
             }
 
             @Override
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
-
             }
-
         }
+
         new TheTask().execute("http://turismo.somee.com/Pessoas/Cadastro");
     }
 }

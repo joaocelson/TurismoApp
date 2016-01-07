@@ -50,6 +50,16 @@
         </activity>
         <activity android:name=".CadastroPessoaActivity" >
         </activity>
+        <activity android:name=".CasaActivity" >
+        </activity>
+        <activity android:name=".ChaleActivity" >
+        </activity>
+        <activity android:name=".PusadaHotelActivity" >
+        </activity>
+        <activity android:name=".GuiaActivity" >
+        </activity>
+        <activity android:name=".ParqueActivity" >
+        </activity>
     </application>
 
 </manifest>

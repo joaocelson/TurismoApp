@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_camara" android:icon="@drawable/ic_menu_home"
+        <item android:id="@+id/nav_casa" android:icon="@drawable/ic_menu_home"
             android:title="Casas" />
-        <item android:id="@+id/nav_gallery" android:icon="@drawable/ic_menu_home"
+        <item android:id="@+id/nav_chale" android:icon="@drawable/ic_menu_home"
             android:title="Chalés" />
-        <item android:id="@+id/nav_slideshow" android:icon="@drawable/ic_menu_home"
+        <item android:id="@+id/nav_hotel_pousada" android:icon="@drawable/ic_menu_home"
             android:title="Pousadas/Hotéis" />
-        <item android:id="@+id/nav_manage" android:icon="@drawable/ic_menu_home"
+        <item android:id="@+id/nav_guia" android:icon="@drawable/ic_menu_home"
             android:title="Guias" />
     </group>
 
     <item android:title="Communicate">
         <menu>
-            <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"
+            <item android:id="@+id/nav_parque" android:icon="@android:drawable/ic_menu_share"
                 android:title="Parque" />
-            <item android:id="@+id/nav_send" android:icon="@android:drawable/ic_menu_send"
+            <item android:id="@+id/nav_prefeitura" android:icon="@android:drawable/ic_menu_send"
                 android:title="Prefeitura" />
         </menu>
     </item>

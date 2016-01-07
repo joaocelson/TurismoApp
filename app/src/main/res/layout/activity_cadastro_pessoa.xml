@@ -13,7 +13,8 @@
         android:layout_height="match_parent">
 
         <LinearLayout android:id="@+id/cadastro_pessoa_form" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:orientation="vertical">
+            android:layout_height="wrap_content" android:orientation="vertical"
+            android:weightSum="1">
 
             <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -46,6 +47,33 @@
                     android:maxLines="1" android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Turista"
+                    android:id="@+id/rbTurista"
+                    android:layout_weight="2.84"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comerciante"
+                    android:id="@+id/rbComerciante"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/rbTurista"
+                    android:layout_toEndOf="@+id/rbTurista"
+                    android:layout_marginLeft="98dp"
+                    android:layout_marginStart="98dp"
+                    android:layout_weight="8.15"
+                    android:onClick="onRadioButtonClicked"/>
+            </RadioGroup>
 
             <Button android:id="@+id/btnCadastrar" style="?android:textAppearanceSmall"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
