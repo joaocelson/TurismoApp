@@ -67,7 +67,7 @@ public class LoginCadastroActivity  extends AppCompatActivity implements GoogleA
 
         setContentView(R.layout.activity_login_cadastro);
 
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
+        //findViewById(R.id.sign_in_button).setOnClickListener(this);
 
         //Registar o usuário caso ainda não esteja cadastrado
         if(!false) {
@@ -235,9 +235,9 @@ public class LoginCadastroActivity  extends AppCompatActivity implements GoogleA
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.sign_in_button:
+            /*case R.id.sign_in_button:
                 signIn();
-                break;
+                break;*/
             case R.id.email_sign_in_button:
                 //ENVIA PARA A ACTIVITY DE CADASTRO
                 Button btnLoginCadastro = (Button)findViewById(R.id.email_sign_in_button);

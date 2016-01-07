@@ -54,7 +54,7 @@
         </LinearLayout>
     </ScrollView>
     </LinearLayout>
-
+<!--
     <TextView android:id="@+id/txtEntrarCom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,6 +89,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="0dp"/>
+    -->
 </LinearLayout>
 
 
