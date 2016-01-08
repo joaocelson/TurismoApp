@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.appodeal.ads.Appodeal;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -14,7 +16,10 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
+        String appKey = "d69fb59bbc08f36ed5a22737d26c5e5cdd3d5538793b3377";
+        Appodeal.initialize(this, appKey, Appodeal.BANNER | Appodeal.INTERSTITIAL);
+        Appodeal.setTesting(true);
+        Appodeal.show(this, Appodeal.BANNER_BOTTOM);
     }
 
     private  final int DURACAO_TELA = 2000;
@@ -45,5 +50,11 @@ public class SplashActivity extends AppCompatActivity {
         //}
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Appodeal.show(this, Appodeal.BANNER);
     }
 }

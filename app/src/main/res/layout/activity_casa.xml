@@ -8,6 +8,16 @@
     tools:context="com.jctecnologia.turismoapp.CasaActivity"
     android:orientation="horizontal">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbMain"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+
+
+    </android.support.v7.widget.Toolbar>
+
     <ListView
         android:id="@+id/lvCasas"
         android:layout_width="wrap_content"

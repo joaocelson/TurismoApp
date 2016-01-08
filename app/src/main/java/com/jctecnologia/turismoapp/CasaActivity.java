@@ -16,6 +16,7 @@ public class CasaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_casa);
 
+
         ArrayList<Casa> listaCasa = new ArrayList<Casa>();
         for (int i = 0; i < 5; i++) {
             Casa casa = new Casa();

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.appodeal.ads.Appodeal;
 import com.facebook.CallbackManager;
         import com.facebook.FacebookCallback;
         import com.facebook.FacebookException;
@@ -56,6 +57,8 @@ public class LoginCadastroActivity  extends AppCompatActivity implements GoogleA
 
         RealmConfiguration config = new RealmConfiguration.Builder(this).build();
         Realm.setDefaultConfiguration(config);
+
+        Appodeal.show(this, Appodeal.BANNER_BOTTOM);
 
         //INTEGRAÇÃO COM FACEBOOK
         FacebookSdk.sdkInitialize(getApplicationContext());
