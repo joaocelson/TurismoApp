@@ -2,10 +2,12 @@ package com.jctecnologia.turismoapp.casa;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,9 +43,10 @@ public class CadastroCasaActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
+                salvarCasa();
+                /*Intent intent = new Intent();
                 intent.setClass(CadastroCasaActivity.this, CasaActivity.class);
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
     }
@@ -54,8 +57,10 @@ public class CadastroCasaActivity extends AppCompatActivity {
         final String numeroPessoas = txtNumeroPessoasCasa.getText().toString();
         final String telefoneCasa = txtTelefoneCasa.getText().toString();
         final String telefoneCasa2 = txtTelefoneCasa2.getText().toString();
-        final String imgString = Base64.encodeToString(getBytesFromBitmap(iv.getDrawingCache()), Base64.NO_WRAP);
+        iv  = (ImageView)findViewById(R.id.ivFotoPerfilCasa);
 
+        Bitmap bm=((BitmapDrawable)iv.getDrawable()).getBitmap();
+        final String imgString = Base64.encodeToString(getBytesFromBitmap(bm), Base64.NO_WRAP);
 
         class TheTask extends AsyncTask<String, Void, String> {
             String resultado = "false";
@@ -64,7 +69,7 @@ public class CadastroCasaActivity extends AppCompatActivity {
             protected String doInBackground(String... arg0) {
                 String text = null;
                 try {
-                    URL url = new URL("http://turismo.somee.com/Pessoas/Cadastro");
+                    URL url = new URL("http://turismo.somee.com/Estabelecimentos/Cadastro");
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     try {
                         urlConnection.setDoOutput(true);
@@ -77,6 +82,8 @@ public class CadastroCasaActivity extends AppCompatActivity {
                                 telefoneCasa + "&fotoPerfil=" +
                                 imgString + "&idPessoa" +
                                 1;
+
+                        Log.println(0,"LOG",urlParamenter);
 
                         OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
                         out.write(urlParamenter.getBytes());
@@ -103,14 +110,18 @@ public class CadastroCasaActivity extends AppCompatActivity {
             }
         }
 
-        new TheTask().execute("http://turismo.somee.com/Pessoas/Cadastro");
+        new TheTask().execute("http://turismo.somee.com/Estabelecimentos/Cadastro");
     }
 
     public byte[] getBytesFromBitmap(Bitmap bitmap) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
-        return stream.toByteArray();
+        try {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            return stream.toByteArray();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-
 }
 

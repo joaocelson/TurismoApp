@@ -115,8 +115,8 @@
     <orderEntry type="library" exported="" name="multidex-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="facebook-android-sdk-4.8.2" level="project" />
     <orderEntry type="library" exported="" name="play-services-ads-8.4.0" level="project" />
-    <orderEntry type="library" exported="" name="chartboost-6.0.2" level="project" />
     <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
+    <orderEntry type="library" exported="" name="chartboost-6.0.2" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="applovin-6.1.4" level="project" />
