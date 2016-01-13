@@ -53,7 +53,7 @@ public class CasaAdapter extends BaseAdapter {
         numeroPessoasCasa.setText("Número Pessoas Casa: " + casa.getNumeroPessoas());
 
         ImageView ivCasa = (ImageView) layout.findViewById(R.id.ivCasa);
-        ivCasa.setImageResource(casa.getCarrosImage(position));
+        ivCasa.setImageResource(casa.getCasasImage(position));
 
         return  layout;
     }

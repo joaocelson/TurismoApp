@@ -32,6 +32,7 @@ import com.facebook.CallbackManager;
         import com.google.android.gms.drive.Drive;
         import com.google.android.gms.plus.Plus;
 import com.jctecnologia.turismoapp.model.Pessoa;
+import com.jctecnologia.util.DaoConsulta;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -152,7 +153,7 @@ public class LoginCadastroActivity  extends AppCompatActivity implements GoogleA
         Realm realm = Realm.getInstance(this);
         RealmResults<Pessoa> realmPessoaResult = realm.where(Pessoa.class).findAll();
 
-        if(realmPessoaResult.size()==0){
+        if(realmPessoaResult.size()<2){
             btnCadastrarPessoa.setText("Cadastrar Usuario");
         }else {
             btnCadastrarPessoa.setText("Login");
@@ -254,14 +255,9 @@ public class LoginCadastroActivity  extends AppCompatActivity implements GoogleA
                     EditText txtPassword = (EditText)findViewById(R.id.txtPasswordLogin);
                     String password = txtPassword.getText().toString();
 
-                    Realm realm = Realm.getDefaultInstance();
-                    RealmResults<Pessoa> realmResultsPessoa = realm.where(Pessoa.class).findAll();
-                    realmResultsPessoa = realmResultsPessoa.where().equalTo("email",email).equalTo("password",password).findAll();
                     Pessoa pessoaLogada = null;
 
-                    if(realmResultsPessoa.size() > 0) {
-                        pessoaLogada = realmResultsPessoa.where().findAll().get(0);
-                    }
+                    pessoaLogada = DaoConsulta.ObterUsuarioLogado(email,password);
 
                     if(pessoaLogada!=null){
                         Intent intent = new Intent();

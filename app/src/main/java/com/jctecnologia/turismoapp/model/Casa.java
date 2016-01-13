@@ -38,7 +38,7 @@ public class Casa {
         this.imagemCapa = imagemCapa;
     }
 
-    public int getCarrosImage(int position) {
+    public int getCasasImage(int position) {
         switch (position) {
             case 0:
                 return (R.drawable.casa_1);
