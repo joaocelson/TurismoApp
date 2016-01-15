@@ -80,7 +80,7 @@ public class CadastroCasaActivity extends AppCompatActivity {
             protected String doInBackground(String... arg0) {
                 String text = null;
                 try {
-                    URL url = new URL("http://192.168.25.176:85/Estabelecimentos/Create");
+                    URL url = new URL("http://turismo.somee.com/Estabelecimentos/Create");
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     try {
                         urlConnection.setDoOutput(true);
@@ -88,8 +88,6 @@ public class CadastroCasaActivity extends AppCompatActivity {
                         urlConnection.setRequestMethod("POST");
                         //urlConnection.setFixedLengthStreamingMode(data.getBytes().length);
                         urlConnection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-
-
 
                         JSONObject jsonObject = new JSONObject();
 
@@ -162,7 +160,7 @@ public class CadastroCasaActivity extends AppCompatActivity {
             }
         }
 
-        new TheTask().execute("http://192.168.25.176:85/Estabelecimentos/Create");
+        new TheTask().execute("http://turismo.somee.com/Estabelecimentos/Create");
     }
 
     public byte[] getBytesFromBitmap(Bitmap bitmap) {

@@ -77,7 +77,6 @@ public class CadastroPessoaActivity extends AppCompatActivity {
 //                }
             }
         });
-
     }
 
     private void CadastroPessoaBancoLocal() {
@@ -122,8 +121,6 @@ public class CadastroPessoaActivity extends AppCompatActivity {
                 break;
         }
     }
-
-
 
     private void salvarPessoa() {
 
